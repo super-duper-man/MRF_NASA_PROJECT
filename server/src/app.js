@@ -1,12 +1,16 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
 const planetsRoute = require("./routes/planets/planets.router");
 
+/**MIDDLEWARES */
 app.use(express.json());
+app.use(cors({ origin: "http://localhost:3000" }));
+/** /MIDDLEWARES */
 
 /** ROUTES */
-app.use("planets", planetsRoute);
+app.use("/planets", planetsRoute);
 
 /** /ROUTES */
 
