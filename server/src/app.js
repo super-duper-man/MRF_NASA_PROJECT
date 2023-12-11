@@ -5,6 +5,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 const planetsRoute = require("./routes/planets/planets.router");
+const launchesRoute = require("./routes/launches/launches.route");
 
 /**MIDDLEWARES */
 app.use(cors({ origin: "http://localhost:3000" }));
@@ -16,7 +17,8 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 
 /** ROUTES */
 app.use("/planets", planetsRoute);
-app.use("/", (req, res) => {
+app.use("/launches", launchesRoute);
+app.use("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public", "index.html"));
 });
 
