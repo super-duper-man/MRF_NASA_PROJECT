@@ -3,9 +3,7 @@ const app = express();
 const path = require("path");
 const cors = require("cors");
 const morgan = require("morgan");
-
-const planetsRoute = require("./routes/planets/planets.router");
-const launchesRoute = require("./routes/launches/launches.route");
+const api = require("./routes/api");
 
 /**MIDDLEWARES */
 app.use(cors({ origin: "http://localhost:3000" }));
@@ -16,8 +14,9 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 /** /MIDDLEWARES */
 
 /** ROUTES */
-app.use("/planets", planetsRoute);
-app.use("/launches", launchesRoute);
+
+app.use("/v1", api);
+
 app.use("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public", "index.html"));
 });
