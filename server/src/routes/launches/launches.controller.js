@@ -13,14 +13,13 @@ async function httpGetAllLaunches(req, res) {
 
 async function httpAddNewLaunch(req, res) {
   const launch = req.body;
-
   if (
     !launch.mission ||
     !launch.rocket ||
     !launch.launchDate ||
     !launch.target
   ) {
-    res.status(400).json({
+    return res.status(400).json({
       error: "Mission required launch property",
     });
   }

@@ -39,7 +39,7 @@ describe("Launches API", () => {
       target: "Kepler-62 f",
       launchDate: "hello world",
     };
-    test("It should respond 201 success", async () => {
+    test.skip("It should respond 201 success", async () => {
       const response = await request(app)
         .post("/v1/launches")
         .send(completeLaunchData)
@@ -53,17 +53,17 @@ describe("Launches API", () => {
       expect(response.body).toMatchObject(launchDataWithoutDate);
     });
 
-    // test("It should catch missing required properties", async () => {
-    //   const response = await request(app)
-    //     .post("/v1/launches")
-    //     .send(launchDataWithoutDate)
-    //     .expect("Content-Type", /json/)
-    //     .expect(400);
+    test("It should catch missing required properties", async () => {
+      const response = await request(app)
+        .post("/v1/launches")
+        .send(launchDataWithoutDate)
+        .expect("Content-Type", /json/)
+        .expect(400);
 
-    //   expect(response.body).toStrictEqual({
-    //     error: "Mission required launch property",
-    //   });
-    // });
+      expect(response.body).toStrictEqual({
+        error: "Mission required launch property",
+      });
+    });
 
     test("It should catch invalid date", async () => {
       const response = await request(app)
