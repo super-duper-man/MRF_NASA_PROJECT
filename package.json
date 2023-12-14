@@ -17,9 +17,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "cross-env": "^7.0.3"
-  },
   "devDependencies": {
     "concurrently": "^8.2.2"
   }
